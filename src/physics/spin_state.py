@@ -13,6 +13,13 @@ class SpinState:
             'x': np.array([[0, 1], [1, 0]], dtype=complex),
             'y': np.array([[0, -1j], [1j, 0]], dtype=complex)
         }
+    def _normalize(self) -> None:
+        normalized_state_vector = np.linalg.norm(self.state_vector)
+
+        if normalized_state_vector == 0:
+            raise ValueError("Zero state vector is aphysical!!!")
+        # Normalize state vector --> divide by the norm
+        self.state_vector /= normalized_state_vector
 
     def measureSpin(self):
         # 1. Error check for appropriate Cartesian measurement
