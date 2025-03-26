@@ -54,10 +54,12 @@ class SpinState:
         return f"{spin_up:.2f}|↑⟩ + {spin_down:.2f}|↓⟩"
 
 
-state1 = SpinState([1, 1])
+#state1 = SpinState([1, 1])
+#state1 = SpinState([1, 0])
 
 #measurement, new_state = state1.measureSpin('z')
 
+"""
 for i in range(5):
     print(f"Experiment {i}")
     measurement_z, new_state1 = state1.measureSpin('z')
@@ -66,3 +68,4 @@ for i in range(5):
     print(f"The measurement of y-spin is: {measurement_y}. The new state is {new_state2}")
     measurement_z2, new_state3 = new_state2.measureSpin('z')
     print(f"The measurement of z-spin AGAIN is: {measurement_z2}. The new state is {new_state3}")
+"""
