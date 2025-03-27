@@ -1,5 +1,5 @@
 # src/gui/widgets.py
-from PyQt5.QtWidgets import QComboBox, QLabel, QSlider
+from PyQt5.QtWidgets import QComboBox, QLabel, QSlider, QPushButton
 from PyQt5.QtCore import Qt
 from src.physics.spin_state import SpinState
 import numpy as np
@@ -41,6 +41,22 @@ class MeasurementDisplay(QLabel):
             f"Outcome: {arrow}\n"
             f"New State: {state}"
         )
+
+class MeasurementButton(QPushButton):
+    def __init__(self):
+        super().__init__("Measure Z")
+        self.setStyleSheet("""
+            QPushButton {
+                font-size: 14px;
+                padding: 8px;
+                background: #3498db;
+                color: white;
+                border-radius: 4px;
+            }
+            QPushButton:hover {
+                background: #2980b9;
+            }
+        """)
 
 class AnimationSpeedSlider(QSlider):
     def __init__(self):
