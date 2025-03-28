@@ -37,38 +37,18 @@ class SpinState:
         # 2. Calculate eigenvalues/states for Pauli matrices
         # 3. Calculate spin measurement probabilities
         # 4. Check outcome after random measurement
-        """if axis not in self._pauli_matrices:
-            raise ValueError("Not a valid measurement axis. Use Cartesian: x,y,z")"""
 
         eigen_values, eigen_states = self._getEigenbasis(axis)
-        #eigen_values, eigen_states = np.linalg.eig(self._pauli_matrices[axis])
         probabilities = self._getProbabilities(eigen_states)
-
-        """probabilities = [
-            # Calculate probability of ith eigenstate of Pauli Matrix
-            abs(np.vdot(eigen_states[:, i], self.state_vector))**2
-            for i in range(2)
-        ]"""
 
         outcome_index = np.random.choice([0,1], p=probabilities)
         measurement_result = eigen_values[outcome_index]
         new_state = eigen_states[:, outcome_index]
 
-        """measurement_result = np.random.choice([-1, 1], p = probabilities)
-
-        if measurement_result == 1:
-            state_index = 0
-        else:
-            state_index = 1
-
-        curr_state = eigen_states[:, state_index]
-
-        return measurement_result, SpinState(curr_state)
-        #return None"""
-
         return measurement_result, SpinState(new_state)
 
     def _getEigenbasis(self, axis: str) -> Tuple[NDArray, NDArray]:
+        # Eigenvalues and states of pauli matrices
         if axis == 'z':
             return (
                 np.array([self.HALF_HBAR, -self.HALF_HBAR]),
@@ -92,6 +72,7 @@ class SpinState:
             raise ValueError("Not a valid measurement axis. Use Cartesian: x,y,z")
 
     def _getProbabilities(self, eigen_states: NDArray) -> NDArray:
+        # Probabilties based on component
         return np.array([
             abs(np.vdot(eigen_states[:, i], self.state_vector)) ** 2
             for i in range(2)
