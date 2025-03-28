@@ -23,6 +23,11 @@ class SpinState:
             raise ValueError("Current model only permits spin-1/2. Need 2D vector")
         self._normalize()
 
+    def __eq__(self, other):
+        if not isinstance(other, SpinState):
+            return False
+        return np.allclose(self.state_vector, other.state_vector, atol=1e-10)
+
     def _normalize(self) -> None:
         norm_state_vector = np.linalg.norm(self.state_vector)
         self.state_vector /= norm_state_vector
@@ -103,7 +108,13 @@ class SpinState:
         a, b = self.state_vector
         return f"{a.real:.2f}|↑⟩ + {b.real:.2f}|↓⟩"
 
+# Basic Spin States
+SPIN_UP = SpinState([1, 0])
+SPIN_DOWN = SpinState([0, 1])
+SPIN_X_UP = SpinState([1/np.sqrt(2), 1/np.sqrt(2)])
+SPIN_X_DOWN = SpinState([1/np.sqrt(2), -1/np.sqrt(2)])
 
+"""
 state1 = SpinState([1, 1])
 state1 = SpinState([1, 0])
 
@@ -127,3 +138,5 @@ SpinState(np.array([1, -1]))
 # Invalid
 SpinState([1])
 SpinState("not_valid")
+
+"""
