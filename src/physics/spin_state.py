@@ -8,8 +8,17 @@ class SpinState:
     # Physical constants
     HALF_HBAR = 0.5
 
-    def __init__(self, state_vector: Union[NDArray, Tuple[complex, complex]]):
+    def __init__(self, state_vector: 'Union[NDArray[complex], Tuple[complex, complex]]'):
         self.state_vector = np.array(state_vector, dtype=complex)
+
+        # Type checks
+        if isinstance(state_vector, (tuple, list)):
+            self.state_vector = np.array(state_vector, dtype=complex)
+        elif isinstance(state_vector, np.ndarray):
+            self.state_vector = state_vector.astype(complex)
+        else:
+            raise ValueError("invalid type")
+
         if len(self.state_vector) != 2:
             raise ValueError("Current model only permits spin-1/2. Need 2D vector")
         self._normalize()
@@ -109,3 +118,12 @@ for i in range(5):
     print(f"The measurement of y-spin is: {measurement_y}. The new state is {new_state2}")
     measurement_z2, new_state3 = new_state2.measureSpin('z')
     print(f"The measurement of z-spin AGAIN is: {measurement_z2}. The new state is {new_state3}")
+
+# Valid
+SpinState([1j, 0])
+SpinState((0.5, -0.5))
+SpinState(np.array([1, -1]))
+
+# Invalid
+SpinState([1])
+SpinState("not_valid")
