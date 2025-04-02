@@ -11,6 +11,6 @@ class Magnet:
 
     def deflect(self, particle, dt: float) -> None:
 
-        mu = particle.magnetic_moment()
+        mu = particle.magneticMoment()
         force = np.zeros(3)
         force[self.axis_map[self.axis]] = mu[self.axis_map[self.axis]] * self.gradient
