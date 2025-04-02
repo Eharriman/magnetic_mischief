@@ -1,7 +1,7 @@
 from .spin_state import SpinState
 import numpy as np
 
-class Partcile:
+class Particle:
     def __int__(self, position, velocity, spin_state):
         self.position = np.array(position, dtype=float)
         self.velocity = np.array(velocity, dtype=float)
