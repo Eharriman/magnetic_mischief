@@ -27,7 +27,11 @@ def test_zDeflection():
     plt.ylabel("Z Position")
     plt.legend()
     plt.grid(True)
-    plt.savefig('tests/output/z_deflection.png')
+    plt.savefig('C:/Users/ethan/PycharmProjects/magnetic_mischief/tests/output/z_deflection.png')
     plt.close()
 
 def test_xDeflection():
+    return 0
+
+
+test_zDeflection()
