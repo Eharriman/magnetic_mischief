@@ -7,4 +7,8 @@ class Partcile:
         self.velocity = np.array(velocity, dtype=float)
         self.spin_state = spin_state
 
-    def magnetic_moment(self):
+    def magnetic_moment(self) -> np.ndarray:
+        #Returns magnetic moment for particle
+        sz = self.spin_state.measure('z')[0]
+        # g factor?
+        return np.array([0, 0, sz])
