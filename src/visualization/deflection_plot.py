@@ -1,10 +1,12 @@
 import matplotlib.pyplot as plt
 import numpy as np
+from IPython.core.pylabtools import figsize
 
 from src.physics import Particle, Magnet, SPIN_UP, SPIN_DOWN
 
+
 def plotDeflection(particles, magnet, steps=20, dt=0.1):
-    fig, ax = plt.subplots(figsize(10,5))
+    fig, ax = plt.subplots(figsize(10, 5))
 
     for particle in particles:
         trajectory = []
