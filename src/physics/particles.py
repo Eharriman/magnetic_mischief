@@ -1,4 +1,5 @@
-from .spin_state import SpinState
+#from .spin_state import SpinState
+from src.physics import SpinState
 import numpy as np
 
 class Particle:
@@ -8,6 +9,7 @@ class Particle:
         self.spin_state = spin_state
         self.g = 2  # g-factor (electron)
         self.hbar = 1
+        self.mass = 1
 
     def magneticMoment(self) -> np.ndarray:
         #Returns magnetic moment for particle

@@ -1,5 +1,7 @@
 import numpy as np
-from .particles import Particle
+# Old import
+# from .particles import Particle
+from src.physics import Particle
 
 class Magnet:
     def __init__(self, gradient: float, axis: str = 'z', length: float = 1.0):
