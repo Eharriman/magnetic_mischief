@@ -14,7 +14,7 @@ def plotDeflection(particles, magnet, steps=20, dt=0.1):
             magnet.deflect(particle, dt)
             trajectory.append(particle.position.copy())
         trajectory = np.array(trajectory)
-        ax.plot(trajectory[:,2], lable=particle.spin_state)
+        ax.plot(trajectory[:,2], label=particle.spin_state)
 
     ax.set_title(f"Spin Deflection Plot (gradient={magnet.gradient})")
     ax.set_xlabel("Time")
