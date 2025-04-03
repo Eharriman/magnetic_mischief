@@ -1,8 +1,10 @@
 import numpy as np
-from .particles import Particle
+# Old import
+# from .particles import Particle
+from src.physics import Particle
 
 class Magnet:
-    def __int__(self, gradient: float, axis: str = 'z', length: float = 1.0):
+    def __init__(self, gradient: float, axis: str = 'z', length: float = 1.0):
 
         self.gradient = gradient
         self.axis = axis
@@ -14,3 +16,7 @@ class Magnet:
         mu = particle.magneticMoment()
         force = np.zeros(3)
         force[self.axis_map[self.axis]] = mu[self.axis_map[self.axis]] * self.gradient
+
+        # Position and velocity
+        particle.velocity += (force / particle.mass) * dt
+        particle.position += particle.velocity * dt

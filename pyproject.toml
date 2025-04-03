@@ -5,13 +5,20 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "magnetic_mischief_game"
 version = "0.1"
+
 description = "Physics game for simulating quantum spin and measurement experiments"
 authors = [
     {name = "Ethan Harriman", email = "eharriman@elhnet.com"}
 ]
+
 dependencies = [
     "numpy>=1.21.0",
     "matplotlib>=3.5"
 ]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0", "pytest-cov", "mypy"]
+gui = ["PyQt5>=5.15"]
+
 [project.urls]
 Homepage = "https://github.com/yourname/quantum_spin_game"
